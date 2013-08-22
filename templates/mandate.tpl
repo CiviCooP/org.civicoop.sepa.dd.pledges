@@ -22,8 +22,8 @@ div.footer {
 
 <div>
 	<table>
-		<tr><th>Naam incassant</th><td>Amnesty Vlaanderen</td></tr>
-		<tr><th>Adres incassant</th><td>Straat 1<br />3776 RT Ede<br />Nederland</td></tr>
+		<tr><th>Naam incassant</th><td>{$creditor_name}</td></tr>
+		<tr><th>Adres incassant</th><td>{$creditor_address}</td></tr>
 		<tr><th>Incassant ID</th><td>{$creditor_id}</td></tr>
 		<tr><th>Mandaat ID (kenmerk machtiging)</th><td>{$mandaat_id}</td></tr>
 	</table>
@@ -32,8 +32,8 @@ div.footer {
 <div>
 	<p>Door ondertekening van dit formulier geeft u toestemming aan:</p>
 	<ul>
-		<li><em>Amnesty Vlaanderen</em> om doorlopend incasso-opdrachten te sturen naar uw bank om een bedrag van uw rekening af te schrijven en</li>
-		<li>uw bank om doorlopend een bedrag van uw rekening af te schrijven overeenkomstig de opdracht van <em>Amnesty Vlaanderen</em></li>
+		<li><em>{$creditor_name}</em> om doorlopend incasso-opdrachten te sturen naar uw bank om een bedrag van uw rekening af te schrijven en</li>
+		<li>uw bank om doorlopend een bedrag van uw rekening af te schrijven overeenkomstig de opdracht van <em>{$creditor_name}</em></li>
 	</ul>
 	<p>Als u het niet eens bent met deze afschrijving kunt u deze laten terugboeken. Neem hiervoor binnen acht weken na afschrijving contact op met uw bank. Vraag uw bank naar de voorwaarden.</p>
 </div>
@@ -50,7 +50,7 @@ div.footer {
 </div>
 
 <div class="footer">
-<p>Onderteken dit formulier en stuur het terug naar Amnesty Vlaanderen</p>
+<p>Onderteken dit formulier en stuur het terug naar {$creditor_name}.</p>
 </div>
 			
 				

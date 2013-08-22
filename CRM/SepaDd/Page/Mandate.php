@@ -41,6 +41,8 @@ class CRM_SepaDd_Page_Mandate extends CRM_Core_Page {
 		
 		$this->assign('contact', $contact);
 		$this->assign('creditor_id', sepa_dd_pledges_get_config_value('creditor_id'));
+		$this->assign('creditor_name', sepa_dd_pledges_get_config_value('creditor_name'));
+		$this->assign('creditor_address', sepa_dd_pledges_get_config_value('creditor_address'));
 		
 		$mandate = $this->getTemplate()->fetch('mandate.tpl');
 		$pledge['custom'][$mandate_field['id']][-1]['value'] = $mandate;
