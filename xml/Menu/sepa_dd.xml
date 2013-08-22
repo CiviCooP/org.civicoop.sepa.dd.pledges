@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/sepa_dd/xml</path>
+    <page_callback>CRM_SepaDd_Page_SepaXml</page_callback>
+    <title>Sepa XML</title>
+    <access_arguments>access CiviContribute</access_arguments>
+  </item>
+</menu>

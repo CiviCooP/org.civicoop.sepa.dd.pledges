@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<extension key="org.civicoop.sepa.dd.pledges" type="module">
+  <file>sepa_dd_pledges</file>
+  <name>Sepa Direct Debit generations from Civi Pledge</name>
+  <description>Generate SEPA Direct Debit payment files from Civi Pledge</description>
+  <license>Academic Free License v3.0</license>
+  <maintainer>
+    <author>CiviCooP</author>
+    <email>helpdesk@civicoop.org</email>
+  </maintainer>
+  <releaseDate>2013-04-16</releaseDate>
+  <version>1.0</version>
+  <develStage>beta</develStage>
+  <compatibility>
+    <ver>4.3</ver>
+  </compatibility>
+  <comments>This module is being developed and tested</comments>
+  <civix>
+    <namespace>CRM/Custom</namespace>
+  </civix>
+</extension>
