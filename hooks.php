@@ -21,7 +21,15 @@ function sepa_dd_pledges_civicrm_navigationMenu(&$params) {
 		),
 	);
 	
-	$params[3]['child'][$insert_at] = $sepa;
+	//find menu contributions 
+	foreach($params as $mid => $menu) {
+		if (isset($menu['attributes']) && isset($menu['attributes']['name']) && $menu['attributes']['name'] == 'Contributions') {
+			$params[$mid]['child'][$insert_at] = $sepa;
+			break;
+		}
+	}
+	
+	
 	
 	//print_r($params); exit();
 }
