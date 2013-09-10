@@ -41,7 +41,7 @@ class CRM_SepaDd_Page_SepaXml extends CRM_Core_Page {
 	
 	private function getTransactions(Pain008Transactions $transactions, $status_id) {
 		$seqtp_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'seqtp'));
-		$custom_sepa_group = CRM_SepaDd_Utils_SepaDdUtils::retrieveCustomGroupByName('sepa');
+		$custom_sepa_group = CRM_SepaDd_Utils_SepaDdUtils::retrieveCustomGroupByName('org_civicoop_sepa_dd_pledges');
 		if ($custom_sepa_group == false) {
 			CRM_Core_Error::fatal("Customgroup SEPA for pledges does not exist. Did you install the extension properly?");
 		}

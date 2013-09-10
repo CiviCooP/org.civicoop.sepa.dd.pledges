@@ -79,7 +79,7 @@ function sepa_dd_pledges_civicrm_enable() {
  * Implementation of hook_civicrm_disable
  */
 function sepa_dd_pledges_civicrm_disable() {
-	_sepa_dd_pledges_delete_customgroup('sepa');
+	_sepa_dd_pledges_delete_customgroup('org_civicoop_sepa_dd_pledges');
 	return _sepa_dd_pledges_civix_civicrm_disable();
 }
 

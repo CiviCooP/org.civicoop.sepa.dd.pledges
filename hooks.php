@@ -30,7 +30,7 @@ function sepa_dd_pledges_civicrm_validateForm( $formName, &$fields, &$files, &$f
 	if ("CRM_Pledge_Form_Pledge"  == $formName) { 
 		$iban_field_name = false;
 		$bic_field_name = false;
-		$gid = CRM_SepaDd_Utils_SepaDdUtils::retrieveCustomGroupByName('sepa');
+		$gid = CRM_SepaDd_Utils_SepaDdUtils::retrieveCustomGroupByName('org_civicoop_sepa_dd_pledges');
 		$iban_custom_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'iban', 'custom_group_id' => $gid));
 		$bic_custom_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'bic', 'custom_group_id' => $gid));
 		
