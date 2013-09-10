@@ -53,7 +53,7 @@ function sepa_dd_pledges_civicrm_uninstall() {
 function sepa_dd_pledges_civicrm_enable() { 
 	 _sepa_dd_pledges_add_option_value('sepa', 'payment_instrument');
 	 
-	$gid = _sepa_dd_pledges_add_customgroup('sepa', 'SEPA Direct Debit', 'Pledge');
+	$gid = _sepa_dd_pledges_add_customgroup('org_civicoop_sepa_dd_pledges', 'SEPA Direct Debit (CiviCoop)', 'Pledge');
 	if ($gid) {
 		_sepa_dd_pledges_add_customfield($gid, 'seqtp', 'Sequence Type', 'String', 'Text', '1', 1, array (
 			'default_value' => 'FRST',
@@ -72,7 +72,6 @@ function sepa_dd_pledges_civicrm_enable() {
 			'is_required' => 0,
 		));
 	}
- 
 	return _sepa_dd_pledges_civix_civicrm_enable();
 }
 
@@ -108,6 +107,7 @@ function sepa_dd_pledges_civicrm_managed(&$entities) {
 }
 
 function _sepa_dd_pledges_add_customgroup($group, $group_title, $extends) {
+	$gid = false;
 	$params['version']  = 3;
 	$params['name'] = $group;
 	$result = civicrm_api('CustomGroup', 'getsingle', $params);
@@ -119,11 +119,19 @@ function _sepa_dd_pledges_add_customgroup($group, $group_title, $extends) {
 		$params['extends'] = $extends;
 		$params['is_active'] = '1';
 		$result = civicrm_api('CustomGroup', 'create', $params);
-	}
-	$gid = false;
-	if (isset($result['id'])) {
+		
+		if (isset($result['id'])) {
+			$gid = $result['id'];
+			unset($params);
+			$params['version'] = 3;
+			$params['id'] = $result['id'];
+			$params['title'] = $group_title;
+			civicrm_api('CustomGroup', 'create', $params);
+		}		
+	} elseif (isset($result['id'])) {
 		$gid = $result['id'];
 	}
+	
 	
 	return $gid;
 } 
@@ -134,6 +142,7 @@ function _sepa_dd_pledges_add_customfield($gid, $name, $label, $data_type, $html
 	$params['custom_group_id'] = $gid;
 	$params['label'] = $label;
 	$result = civicrm_api('CustomField', 'getsingle', $params);
+	
 	if (!isset($result['id'])) {
 		unset($params);
 		$params['version']  = 3;
