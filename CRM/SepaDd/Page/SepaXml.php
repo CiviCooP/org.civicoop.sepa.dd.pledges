@@ -62,10 +62,10 @@ class CRM_SepaDd_Page_SepaXml extends CRM_Core_Page {
 		$pledge_params['options']['offset']  = 0;
 		$pledge_params['options']['limit']  = 100;
 		$pledge_params['options']['sort']  = 'pledge_next_pay_date ASC';
-		if ($status_id == 2) { //pending
+		/*if ($status_id == 2) { //pending
 			$pledge_params['pledge_next_pay_date']  = $transactions->transactionDate->format('Y-m-d');
 			$pledge_params['options']['sort']  = 'pledge_next_pay_date ASC';
-		}
+		}*/
 		$pledges = civicrm_api('Pledge', 'get', $pledge_params);
 		if (isset($pledges['values']) && is_array($pledges['values'])) {
 			foreach($pledges['values'] as $pledge) {			
