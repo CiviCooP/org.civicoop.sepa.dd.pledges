@@ -34,8 +34,10 @@ function sepa_dd_pledges_civicrm_xmlMenu(&$files) {
  * Implementation of hook_civicrm_install
  */
 function sepa_dd_pledges_civicrm_install() {  
+  $config = CRM_Core_Config::singleton();
+  //create the tables
   $sql = file_get_contents(dirname( __FILE__ ) .'/sql/install.sql', true);
-  //CRM_Utils_File::sourceSQLFile($config->dsn, $sql, NULL, true);
+  CRM_Utils_File::sourceSQLFile($config->dsn, $sql, NULL, true);
   
   return _sepa_dd_pledges_civix_civicrm_install();
 }
