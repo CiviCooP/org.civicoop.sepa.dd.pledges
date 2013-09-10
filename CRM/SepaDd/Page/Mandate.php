@@ -10,9 +10,10 @@ class CRM_SepaDd_Page_Mandate extends CRM_Core_Page {
 	
 	function generate(&$pledge) {
 		$sepa_group = civicrm_api('CustomGroup', 'getSingle', array('version'=>3, 'name' => 'org_civicoop_sepa_dd_pledges'));
-		$iban_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'iban'));
-		$mdtid_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mdtid'));
-		$mandate_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mandate'));		
+		
+		$iban_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'iban', 'custom_group_id' => $sepa_group['id']));
+		$mdtid_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mdtid', 'custom_group_id' => $sepa_group['id']));
+		$mandate_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mandate', 'custom_group_id' => $sepa_group['id']));		
 		
 		$mdtid = $this->generateMandateNumber();
 		$pledge['custom'][$mdtid_field['id']][-1]['value'] = $mdtid;
@@ -90,7 +91,7 @@ class CRM_SepaDd_Page_Mandate extends CRM_Core_Page {
 	function generateMandateNumber() {
 		
 		$sepa_group = civicrm_api('CustomGroup', 'getSingle', array('version'=>3, 'name' => 'org_civicoop_sepa_dd_pledges'));
-		$mdtid_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mdtid'));
+		$mdtid_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'mdtid', 'custom_group_id' => $sepa_group['id']));
 		
 		$mdtid = false;
 		$sql = "SELECT (MAX(`id`) + 1) AS `mdtid` FROM `".$sepa_group['table_name']."`";
