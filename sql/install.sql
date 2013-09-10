@@ -8,17 +8,22 @@ CREATE TABLE IF NOT EXISTS `civicrm_pledge_sepa_dd` (
   `credttm` datetime DEFAULT NULL,
   `mdtid` varchar(255) NOT NULL,
   `dtofsgntr` date NOT NULL,
+  `dbtr_name` varchar(70) NOT NULL,
   `dbtr_iban` varchar(34) NOT NULL,
-  `dbtr_bic` int(11) NOT NULL,
+  `dbtr_bic` varchar(35) NOT NULL,
   `description` varchar(255) NOT NULL,
   `amount` float NOT NULL,
   `amount_ccy` varchar(3) NOT NULL DEFAULT 'EUR',
   `cdtr_id` varchar(64) NOT NULL,
   `cdtr_iban` varchar(34) NOT NULL,
   `cdtr_bic` varchar(64) NOT NULL,
+  `end_to_end_id` varchar(35) NOT NULL,
+  `transaction_id` varchar(35) NOT NULL,
+  `transaction_date` datetime NOT NULL,
   `feedback_date` date DEFAULT NULL,
   `feedback_state` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `end_to_end_id` (`end_to_end_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `civicrm_pledges_sepa_dd_transactions` (

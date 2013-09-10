@@ -40,11 +40,12 @@ class CRM_SepaDd_Page_SepaXml extends CRM_Core_Page {
 	}
 	
 	private function getTransactions(Pain008Transactions $transactions, $status_id) {
-		$seqtp_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'seqtp'));
 		$custom_sepa_group = CRM_SepaDd_Utils_SepaDdUtils::retrieveCustomGroupByName('org_civicoop_sepa_dd_pledges');
 		if ($custom_sepa_group == false) {
 			CRM_Core_Error::fatal("Customgroup SEPA for pledges does not exist. Did you install the extension properly?");
 		}
+		
+		$seqtp_field = civicrm_api('CustomField', 'getSingle', array('version'=>3, 'name' => 'seqtp', 'custom_group_id' => $custom_sepa_group['id']));
 		
 		$contribution_status_value = CRM_SepaDd_Utils_SepaDdUtils::getOptionValueByGroupAndName('contribution_status', 'Pending');
 		if ($contribution_status_value==false) {
@@ -58,6 +59,13 @@ class CRM_SepaDd_Page_SepaXml extends CRM_Core_Page {
 	
 		$pledge_params['pledge_status_id'] = $status_id;
 		$pledge_params['version'] = 3;
+		$pledge_params['options']['offset']  = 0;
+		$pledge_params['options']['limit']  = 100;
+		$pledge_params['options']['sort']  = 'pledge_next_pay_date ASC';
+		if ($status_id == 2) { //pending
+			$pledge_params['pledge_next_pay_date']  = $transactions->transactionDate->format('Y-m-d');
+			$pledge_params['options']['sort']  = 'pledge_next_pay_date ASC';
+		}
 		$pledges = civicrm_api('Pledge', 'get', $pledge_params);
 		if (isset($pledges['values']) && is_array($pledges['values'])) {
 			foreach($pledges['values'] as $pledge) {			
