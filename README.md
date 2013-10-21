@@ -2,7 +2,7 @@
 
 ##License
 
-This module is provided unde the Academic Free License v3.0 and is developed and maintained by [CiviCoop](http://www.civicoop.org)
+This module is provided under the Academic Free License v3.0 and is developed and maintained by [CiviCoop](http://www.civicoop.org)
 
 ## Functionality
 
